@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//EjercicioHibernate/EjercicioHibernate Mapping DTD 3.0/EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="EjercicioHibernate.Modelos.Cuadro" table="Cuadro">
+        <!-- Clave primaria (id) -->
+        <id column="id_cuadro" name="id_cuadro" type="integer"></id>
+        <!-- Resto de atributos (property) -->
+        <property name="nombre"></property>
+        <property name="anyo_creacion"></property>
+
+        <!-- Relación con pintor (1:N)-->
+        <many-to-one name="pintor">   <!-- CLASE con la que se RELACIONA -->
+            <!-- FOREIGN KEY -->
+            <column name="id_pintor"></column>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

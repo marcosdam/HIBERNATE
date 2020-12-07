@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//EjemploHibernate/EjemploHibernate Mapping DTD 3.0/EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="EjemploHibernate.Models.Direccion" table="Direccion">
+        <!-- Clave primaria (id) -->
+        <id column="id" name="id" type="integer"></id>
+        <!-- Resto de atributos (property) -->
+        <property name="calle" type="java.lang.String"></property>
+        <property name="numero"></property>
+        <property name="poblacion" type="java.lang.String"></property>
+        <property name="provincia" type="java.lang.String"></property>
+        <!-- No es necesario hacer relaciones aquí, ya que ya las hemos hecho en Profesor (clase y xml) -->
+        <!-- No puede existir dirección sin profesor, pero sí profesor sin dirección -->
+    </class>
+</hibernate-mapping>

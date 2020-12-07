@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//EjercicioHibernate/EjercicioHibernate Mapping DTD 3.0/EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="EjercicioHibernate.Modelos.Agente" table="Agente">
+        <!-- Clave primaria (id) -->
+        <id column="id" name="id_agente" type="integer"></id>
+        <!-- Resto de atributos (property) -->
+        <property name="nombre"></property>
+
+        <!-- Relación 1:N con la tabla Pintor    (Uno a Muchos (one-to-many))-->
+        <list name="pintores" cascade="all" inverse="false">
+            <!-- Clave ajena-->
+            <key>
+                <column name="id_agente"></column> <!-- FOREIGN KEY en tabla PINTOR -->
+            </key>
+            <!-- Índice -->
+            <list-index>
+                <column name="id_x_agente"></column>    <!-- Columna que tiene el índice de la lista ordenada -->
+            </list-index>
+            <!-- Relación 1 a muchos con Cuadro-->
+            <one-to-many class="EjercicioHibernate.Modelos.Cuadro"></one-to-many>
+        </list>
+    </class>
+</hibernate-mapping>

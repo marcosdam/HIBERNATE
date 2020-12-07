@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//EjemploHibernate/EjemploHibernate Mapping DTD 3.0/EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="EjemploHibernate.Models.Despacho" table="Despacho">
+        <!-- Clave primaria (id) -->
+        <id column="id" name="id" type="integer"></id>
+        <!-- Resto de atributos (property) -->
+        <property name="num_despacho"></property>
+        <property name="piso"></property>
+        <!-- Relación 1:1 con la tabla Profesor (no se añade como property)-->
+        <one-to-one name="profesor" cascade="all"></one-to-one>
+    </class>
+</hibernate-mapping>

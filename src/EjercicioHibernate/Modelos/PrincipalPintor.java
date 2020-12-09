@@ -28,17 +28,10 @@ public class PrincipalPintor {
 
         // 2. Profesor con estudio
         Pintor pintor1 = new Pintor(12, "Javi", "Roca", "Sánchez", 7, new Agente(12, "Mario", pintores2));
-        Estudio estudio1 = new Estudio(12, );
+        Estudio estudio1 = new Estudio(12, "Planta baja", "Avenida Valladolid", 30, 46020, "Valencia" );
         // Asignar estudio al pintor y viceversa
         estudio1.setPintor(pintor1);
         pintor1.setEstudio(estudio1);
-
-
-
-
-
-
-
 
         // Comenzar las transacciones donde hacer el CRUD
         // session.beginTransaction();
@@ -55,15 +48,15 @@ public class PrincipalPintor {
         // 2. Leer (CAST del objeto)
         /*
         // session.beginTransaction();
-        Profesor profesor1 = (Profesor)session.get(Profesor.class, 1);
-        System.out.println(profesor1.toString());
+        Pintor pintor1 = (Pintor)session.get(Pintor.class, 12);
+        System.out.println(pintor1.toString());
         session.close();
         */
 
         // 3. ACTUALIZAR
         /*
         session.beginTransaction();
-        session.update(new Profesor(1, "Manolo", "Pérez", "García"));
+        session.update(new Pintor(12, "Javi", "Pérez", "García", 8, new Agente(12, "Mario", pintores2)));
         session.getTransaction().commit();
         session.close();
         */
@@ -71,16 +64,16 @@ public class PrincipalPintor {
         // 4. ELIMINAR
         /*
         session.beginTransaction();
-        session.delete(profesor);
+        session.delete(pintor);
         session.getTransaction().commit();
         session.close();
         */
 
         /*
         // 5. GUARDAR (ACTUALIZAR SI YA EXISTE)
-        Profesor profe = new Profesor(12, "Ana", "García", "López");
+        Pintor pintor = new Pintor(11, "Miguel", "Simón", "Castro", 4, new Agente(12, "Mario", pintores2));
         session.beginTransaction();
-        session.saveOrUpdate(profe);
+        session.saveOrUpdate(pintor);
         session.getTransaction().commit();
         session.close();
         */

@@ -26,20 +26,20 @@ public class PrincipalPintor {
         Pintor pintor = new Pintor(11, "José", "Fernández", "Sánchez", 5,
                 new Agente(11, "Paco", pintores));
 
-        // 2. Profesor con estudio
-        Pintor pintor1 = new Pintor(12, "Javi", "Roca", "Sánchez", 7, new Agente(12, "Mario", pintores2));
+        // 2. Pintor con estudio
+        Agente agente = new Agente(12, "Mario", pintores2);
+
+        Pintor pintor1 = new Pintor(12, "Javi", "Roca", "Sánchez", 7, agente);
+
         Estudio estudio1 = new Estudio(12, "Planta baja", "Avenida Valladolid", 30, 46020, "Valencia" );
+
         // Asignar estudio al pintor y viceversa
         estudio1.setPintor(pintor1);
         pintor1.setEstudio(estudio1);
 
-        // Comenzar las transacciones donde hacer el CRUD
-        // session.beginTransaction();
-
-
         // 1. Guardar objeto en la BD (sesión)
         session.beginTransaction();
-        session.save(pintor);
+        //session.save(pintor);
         session.save(pintor1);
         session.getTransaction().commit();
         session.close();

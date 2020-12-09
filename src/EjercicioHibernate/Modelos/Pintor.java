@@ -22,26 +22,20 @@ public class Pintor implements Serializable {
     private String apellido2;
     @Column(name = "numero_cuadros")
     private int numero_cuadros;
-    // 1 agente puede llevar a muchos pintores (1 pintor puede ser llevado por 1 agente)
-    private Agente agentePintor;
 
-    // 1 pintor puede crear varios cuadros
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_pintor")
-    @IndexColumn(name = "id_cuadro")
-    private List<Cuadro> cuadros;
-
-    public List<Cuadro> getCuadros() {
-        return cuadros;
+    // 1 agente puede llevar a muchos pintores (1 pintor puede ser llevado por 1 agente)    N:1
+    @ManyToOne
+    @JoinColumn(name = "id_agente")     // Clave ajena
+    private Agente agente;
+    public Agente getAgente() {
+        return agente;
+    }
+    public void setAgente(Agente agente) {
+        this.agente = agente;
     }
 
-    public void setCuadros(List<Cuadro> cuadros) {
-        this.cuadros = cuadros;
-    }
-
-    // 1 pintor tendrá 1 estudio (y 1 estudio tendrá 1 pintor)
+    // 1 estudio tendrá 1 pintor y 1 pintor tendrá 1 estudio    1:1
     @OneToOne(cascade = CascadeType.ALL)
-    // Relacionamos las dos tablas (clases) por sus claves primaria -> @PrimaryKeyJoinColumn
     @PrimaryKeyJoinColumn
     private Estudio estudio;
     public Estudio getEstudio() {
@@ -51,16 +45,27 @@ public class Pintor implements Serializable {
         this.estudio = estudio;
     }
 
+    // 1 cuadro tiene 1 pintor y 1 pintor muchos cuadros    1:N
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_pintor")     // Clave ajena
+    @IndexColumn(name = "id_x_pintor")  // Índice
+    private List<Cuadro> cuadros;
+    public List<Cuadro> getCuadros() {
+        return cuadros;
+    }
+    public void setCuadros(List<Cuadro> cuadros) {
+        this.cuadros = cuadros;
+    }
+
     public Pintor() {
     }
 
-    public Pintor(int id, String nombre, String apellido1, String apellido2, int numeroCuadros, Agente agentePintor) {
+    public Pintor(int id, String nombre, String apellido1, String apellido2, int numeroCuadros) {
         this.id_pintor = id;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.numero_cuadros = numeroCuadros;
-        this.agentePintor = agentePintor;
     }
 
     public int getId_pintor() {
@@ -103,21 +108,12 @@ public class Pintor implements Serializable {
         this.numero_cuadros = numeroCuadros;
     }
 
-    public Agente getAgentePintor() {
-        return agentePintor;
-    }
-
-    public void setAgentePintor(Agente agentePintor) {
-        this.agentePintor = agentePintor;
-    }
-
     @Override
     public String toString() {
         return " Id: " + id_pintor +
                 " Nombre: " + nombre + '\'' +
                 " Apellido 1: " + apellido1 + '\'' +
                 " Apellido 2: " + apellido2 + '\'' +
-                " Número de Cuadros: " + numero_cuadros +
-                " Agente del Pintor: " + agentePintor.toString();
+                " Número de Cuadros: " + numero_cuadros;
     }
 }

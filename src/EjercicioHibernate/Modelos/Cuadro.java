@@ -21,16 +21,15 @@ public class Cuadro implements Serializable {
     private Pintor pintor;
 
     // No es necesario hacer relaciones aquí, ya que ya las hemos hecho en Pintor (clase y xml)
-    // No puede existir cuadro sin pintor, pero sí pintorrofesor sin cuadro
+    // No puede existir cuadro sin pintor, pero sí pintor sin cuadro
 
     public Cuadro() {
     }
 
-    public Cuadro(int id_cuadro, String nombre, int anyo_creacion, Pintor pintor) {
+    public Cuadro(int id_cuadro, String nombre, int anyo_creacionr) {
         this.id_cuadro = id_cuadro;
         this.nombre = nombre;
         this.anyo_creacion = anyo_creacion;
-        this.pintor = pintor;
     }
 
     public int getId_cuadro() {
@@ -69,7 +68,6 @@ public class Cuadro implements Serializable {
     public String toString() {
         return " Id del Cuadro: " + id_cuadro +
                 " Nombre: " + nombre + '\'' +
-                " Año de creación: " + anyo_creacion +
-                " Pintor: " + pintor.toString();
+                " Año de creación: " + anyo_creacion;
     }
 }

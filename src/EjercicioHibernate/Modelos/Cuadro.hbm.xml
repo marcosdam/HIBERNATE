@@ -10,7 +10,7 @@
         <property name="nombre"></property>
         <property name="anyo_creacion"></property>
 
-        <!-- Relación con pintor (1:N)-->
+        <!-- Relación con pintor (N:1)-->
         <many-to-one name="pintor">   <!-- CLASE con la que se RELACIONA -->
             <!-- FOREIGN KEY -->
             <column name="id_pintor"></column>

@@ -11,9 +11,14 @@
         <property name="apellido1"></property>
         <property name="apellido2"></property>
         <property name="numero_cuadros"></property>
-        <!-- Relación 1:1 con la tabla Estudio y Agente (no se añade como property)-->
+
+        <!-- Relación 1:1 con la tabla Estudio (no se añade como property)-->
         <one-to-one name="estudio" cascade="all"></one-to-one>
-        <one-to-one name="agentePintor" cascade="all"></one-to-one>
+
+        <!-- Relación N:1 con la tabla Agente (no se añade como property)-->
+        <many-to-one name="agente" cascade="all">
+            <column name="id_agente"></column>
+        </many-to-one>
 
         <!-- Relación 1:N con la tabla Cuadro    (Uno a Muchos (one-to-many))-->
         <list name="cuadros" cascade="all" inverse="false">
@@ -23,7 +28,7 @@
             </key>
             <!-- Índice -->
             <list-index>
-                <column name="id_x_cuadro"></column>    <!-- Columna que tiene el índice de la lista ordenada -->
+                <column name="id_x_pintor"></column>    <!-- Columna que tiene el índice de la lista ordenada -->
             </list-index>
             <!-- Relación 1 a muchos con Cuadro-->
             <one-to-many class="EjercicioHibernate.Modelos.Cuadro"></one-to-many>

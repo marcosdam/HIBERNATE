@@ -12,6 +12,7 @@
         <property name="numero"></property>
         <property name="codigo_postal"></property>
         <property name="localidad"></property>
+
         <!-- Relación 1:1 con la tabla Pintor -->
         <one-to-one name="pintor" cascade="all"></one-to-one>
 

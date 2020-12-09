@@ -17,32 +17,55 @@ public class PrincipalPintor {
         // Abrir la sesión para trabajar con la base de datos
         Session session = sessionFactory.openSession();
 
-        List<Pintor> pintores, pintores2;
-        pintores = new ArrayList<>();
-        pintores2 = new ArrayList<>();
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Crear objetos para insertar en BD
-        // 1. Pintor "normal"
-        Pintor pintor = new Pintor(11, "José", "Fernández", "Sánchez", 5,
-                new Agente(11, "Paco", pintores));
+        Agente agente1 = new Agente(1, "Miguel López Pérez", 2);
 
-        // 2. Pintor con estudio
-        Agente agente = new Agente(12, "Mario", pintores2);
+        Pintor pintor1 = new Pintor(1, "Paco", "Fernández", "Sánchez", 5);
+        Pintor pintor2 = new Pintor(1, "María", "Gómez", "Martínez", 7);
 
-        Pintor pintor1 = new Pintor(12, "Javi", "Roca", "Sánchez", 7, agente);
+        Estudio estudio1 = new Estudio(1, "Planta baja", "Avenida Valladolid", 30, 46020, "Valencia" );
+        Estudio estudio2 = new Estudio(1, "Plaza del barrio", "Emilio Baró0", 3, 46020, "Valencia" );
 
-        Estudio estudio1 = new Estudio(12, "Planta baja", "Avenida Valladolid", 30, 46020, "Valencia" );
-
-        // Asignar estudio al pintor y viceversa
-        estudio1.setPintor(pintor1);
         pintor1.setEstudio(estudio1);
+        pintor2.setEstudio(estudio2);
 
-        // 1. Guardar objeto en la BD (sesión)
+        Cuadro cuadro1 = new Cuadro(1, "Loquesea", 1992);
+        Cuadro cuadro2 = new Cuadro(2, "Blablabla", 1951);
+        Cuadro cuadro3 = new Cuadro(3, "Trambólico", 1934);
+        Cuadro cuadro4 = new Cuadro(4, "Locura", 1894);
+
+
+        List<Cuadro> cuadros1 = new ArrayList<>();
+        cuadros1.add(cuadro1);
+        cuadros1.add(cuadro2);
+        pintor1.setCuadros(cuadros1);
+
+        List<Cuadro> cuadros2 = new ArrayList<>();
+        cuadros2.add(cuadro3);
+        cuadros2.add(cuadro4);
+        pintor2.setCuadros(cuadros2);
+
+        List<Pintor> pintores = new ArrayList<>();
+        pintores.add(pintor1);
+        pintores.add(pintor2);
+
+        agente1.setPintores(pintores);
+        //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 1. Guardar o actualizar objeto en la BD (sesión)
         session.beginTransaction();
-        //session.save(pintor);
-        session.save(pintor1);
+        session.saveOrUpdate(agente1);
         session.getTransaction().commit();
         session.close();
+
+        // SELECT PINTORES
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<Pintor> misPintores = session.createQuery("from Pintor").list();
+        for (Pintor p: misPintores){
+            System.out.println(p.toString());
+        }
 
 
         // 2. Leer (CAST del objeto)

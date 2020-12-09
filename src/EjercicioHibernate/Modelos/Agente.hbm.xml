@@ -8,6 +8,7 @@
         <id column="id" name="id_agente" type="integer"></id>
         <!-- Resto de atributos (property) -->
         <property name="nombre"></property>
+        <property name="numero_pintores"></property>
 
         <!-- Relación 1:N con la tabla Pintor    (Uno a Muchos (one-to-many))-->
         <list name="pintores" cascade="all" inverse="false">
@@ -19,8 +20,8 @@
             <list-index>
                 <column name="id_x_agente"></column>    <!-- Columna que tiene el índice de la lista ordenada -->
             </list-index>
-            <!-- Relación 1 a muchos con Cuadro-->
-            <one-to-many class="EjercicioHibernate.Modelos.Cuadro"></one-to-many>
+            <!-- Relación 1 a muchos con Pintor-->
+            <one-to-many class="EjercicioHibernate.Modelos.Pintor"></one-to-many>
         </list>
     </class>
 </hibernate-mapping>
